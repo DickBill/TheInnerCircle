@@ -36,7 +36,7 @@ public class CharacterSprite {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(image, 0, 0, null);
+        canvas.drawBitmap(image, 0, 500, null);
     }
 
     public void update() {
