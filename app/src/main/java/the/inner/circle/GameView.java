@@ -12,7 +12,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     private MainThread thread;
     private CharacterSprite characterSprite;
 
-
     public GameView(Context c) {
         super(c);
 
@@ -26,7 +25,6 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         characterSprite = new CharacterSprite(BitmapFactory.decodeResource(getResources(), R.drawable.innercircle));
-
         thread.setRunning(true);
         thread.start();
     }
@@ -51,14 +49,25 @@ public class GameView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     public void update(){
-        characterSprite.update();
+        characterSprite.update(getCanvas());
     }
 
     @Override
     public void draw(Canvas canvas){
         super.draw(canvas);
         if(canvas != null){
+            setCanvas(canvas);
             characterSprite.draw(canvas);
         }
     }
+
+    public Canvas getCanvas(){
+        return canvas;
+    }
+
+    public void setCanvas(Canvas temp){
+        canvas = temp;
+    }
+
+    private Canvas canvas;
 }

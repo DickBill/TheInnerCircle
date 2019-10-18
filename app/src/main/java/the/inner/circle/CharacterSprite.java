@@ -10,12 +10,14 @@ import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
-public class CharacterSprite {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class CharacterSprite extends AppCompatActivity {
 
     private Bitmap image;
 
     public CharacterSprite(Bitmap bmp) {
-        image = getResizedBitmap(bmp, 1080, 1080);
+        image = bmp;
     }
 
     public Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
@@ -36,10 +38,12 @@ public class CharacterSprite {
     }
 
     public void draw(Canvas canvas) {
-        canvas.drawBitmap(image, 0, 500, null);
+        canvas.drawBitmap(image, 0, 0, null);
     }
 
-    public void update() {
+    public void update(Canvas canvas) {
+        if (canvas != null)
+            image = getResizedBitmap(image, canvas.getWidth(), canvas.getWidth());
 
     }
 }
